@@ -1,12 +1,11 @@
 package SSVSEM.service.book.impls;
 
 import SSVSEM.model.Book;
+import SSVSEM.repository.FakeBookRepository;
 import SSVSEM.service.book.interfaces.IBookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -18,42 +17,32 @@ import java.util.List;
 */
 @Service
 public class BookServiceImpl implements IBookService {
-    private LocalDateTime time = LocalDateTime.now();
-    private List<Book> list = new ArrayList<>(
-            Arrays.asList(
-                    new Book("0", "title0", "author0", "genre0", 0, 0, "desc0", time, time),
-                    new Book("1", "title1", "author1", "genre1", 1, 1, "desc1", time, time),
-                    new Book("2", "title2", "author2", "genre2", 2, 2, "desc2", time, time),
-                    new Book("3", "title3", "author3", "genre3", 3, 3, "desc3", time, time)
-            )
-    );
 
+    @Autowired
+    FakeBookRepository repository;
 
     @Override
     public Book create(Book book) {
-        return null;
+        return repository.create(book);
     }
 
     @Override
     public Book get(String id) {
-        Book book = list.stream().filter(el -> el.getId().equals(id))
-                .findAny().get();
-        return book;
+        return repository.get(id);
     }
 
     @Override
     public Book update(Book book) {
-        return null;
+        return repository.update(book);
     }
 
     @Override
     public Book delete(String id) {
-        return null;
+        return repository.delete(id);
     }
-
 
     @Override
     public List<Book> getAll() {
-        return list;
+        return repository.getAll();
     }
 }

@@ -3,9 +3,7 @@ package SSVSEM.controller.rest;
 import SSVSEM.model.Book;
 import SSVSEM.service.book.impls.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,9 +25,25 @@ public class BookRestController {
     public List<Book> getAll(){
         return service.getAll();
     }
+
     @RequestMapping("/{id}")
     public Book get(@PathVariable("id")String id){
         return service.get(id);
+    }
+
+    @RequestMapping("/delete/{id}")
+    public Book delete(@PathVariable("id")String id){
+        return service.delete(id);
+    }
+
+    @PostMapping("/create")
+    public Book create(@RequestBody Book book){
+        return service.create(book);
+    }
+
+    @PostMapping("/update")
+    public Book update(@RequestBody Book book){
+        return service.update(book);
     }
 
 }
