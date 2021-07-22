@@ -12,7 +12,8 @@
     <form name="item" action="" method="POST">
         <div class="mb-3" style="width: 50%">
             <label for="exampleInputEmail1" class="form-label">ID</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" <@spring.formInput "form.id" "" "text"/>
+            <input class="form-control" type="text" id="exampleInputEmail1"  disabled readonly <@spring.formInput "form.id" "" "text"/>
+
         </div>
         <div class="mb-3" style="width: 50%">
             <label for="exampleInputEmail1" class="form-label">Name</label>
