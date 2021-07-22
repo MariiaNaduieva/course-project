@@ -22,12 +22,14 @@ public class FakeItemRepository {
     private LocalDateTime time = LocalDateTime.now();
     private List<Item> list = new ArrayList<>(
             Arrays.asList(
-                    new Item("0", "name0", "desc0",time, time),
-                    new Item("1", "name1", "desc1",time, time),
-                    new Item("2", "name2", "desc2",time, time),
-                    new Item("3", "name3", "desc3",time, time)
+                    new Item("0", "name0", "desc0", time, time),
+                    new Item("1", "name1", "desc1", time, time),
+                    new Item("2", "name2", "desc2", time, time),
+                    new Item("3", "name3", "desc3", time, time)
             )
     );
+
+
 
     public Item create(Item item) {
         String id = UUID.randomUUID().toString();
@@ -49,10 +51,12 @@ public class FakeItemRepository {
     public Item update(Item item) {
         String id = item.getId();
         Item itemToUpdate = this.get(id);
+        item.setCreatedAt(itemToUpdate.getCreatedAt());
         int index = list.indexOf(itemToUpdate);
         item.setUpdatedAt(LocalDateTime.now());
         list.remove(itemToUpdate);
         list.add(index, item);
+
         return item;
     }
 
@@ -69,5 +73,8 @@ public class FakeItemRepository {
     public List<Item> getAll() {
         return list;
     }
+
+
+
 
 }

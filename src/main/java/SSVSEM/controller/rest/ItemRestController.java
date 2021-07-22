@@ -25,6 +25,7 @@ public class ItemRestController {
     public List<Item> getAll(){
         return service.getAll();
     }
+
     @RequestMapping("/{id}")
     public Item get(@PathVariable("id")String id){
         return service.get(id);
